@@ -1,0 +1,53 @@
+package com.collabera.P2;
+
+/*
+ * Problem #2:
+ * 
+ * Write a program that counts how many unique words are in a string. 
+ * Make sure that it prints in alphabetical order.
+
+	Input: 
+		Hello HELLO worlD WORld hi.
+	Output:
+		Hello: 2
+		Hi: 1
+		World: 2
+
+ * */
+
+public class WordCount {
+	
+	public static void main(String[] args) {
+		String input="Hello HELLO worlD WORld hi.";
+		String[] words=input.split(" ");
+		int count=1;
+		
+		String temp;
+		
+		String str[] = new String[words.length];
+		
+		for (int x = 0; x < words.length; x++) {
+            for (int z = x + 1; z < words.length; z++) { 
+                if (str[x].compareTo(str[z]) > 0) {
+                    temp = str[x];
+                    str[x] = str[z];
+                    str[z] = temp;
+                }
+            }
+        }
+		
+		for(int i = 0; i < words.length; i++)	{
+			for(int j = i + 1; j<words.length; j++) {
+				if(words[i].equalsIgnoreCase(words[j]))	{
+						count=count+1;
+						words[j]="0";
+					}
+				}
+	       
+			if(words[i]!="0") {
+				System.out.println((words[i].toString())+" has " + count + " occurence(s).");
+				count=1;
+			}
+		}
+	}
+}

@@ -1,0 +1,69 @@
+package com.collabera;
+
+import java.util.Scanner;
+
+/*
+ * For this example, assume a valid telephone number is 10 digits long, 
+ * it can have any numbers next to each other. However, it cannot have 
+ * the number 911 in any part of the phone number. In your program, have 
+ * the user enter a phone number and tell them if it is a valid phone number 
+ * or not WITHOUT USING REGEX. See below for what counts as valid inputs.
+ * 
+ * Valid:
+ * 		0123456789
+ *		(012) 345-6789
+ *		012-345-6789
+ * Not valid:
+ *		0009110000
+ *		(111) 911-2084
+ *		911-911-0000
+*/
+
+public class P3 {
+
+	public static void main(String[] args) {
+		
+		Scanner in = new Scanner(System.in);
+		System.out.println("Phone Number Validator.\n");
+		System.out.print("Enter a phone number: ");
+		StringBuilder num  = new StringBuilder(in.nextLine());
+		
+		@SuppressWarnings("unused")
+		boolean b = false;
+		for(int i = 0; i< num.length(); i++) {
+			if(num.charAt(i) == '9' && num.charAt(i+1) == '1' && num.charAt(i+2) =='1') {
+				System.out.println("This number is invalid.");
+				in.nextLine();
+			}
+			
+			if(num.charAt(i) == '9' && num.charAt(i+1) == ')' && num.charAt(i+2) =='1' && num.charAt(i+3) =='1') {
+				System.out.println("This number is invalid.");
+				in.nextLine();
+			}
+			
+			if(num.charAt(i) == '9' && num.charAt(i+1) == '1' && num.charAt(i+2) ==')' && num.charAt(i+3) =='1') {
+				System.out.println("This number is invalid.");
+				in.nextLine();
+			}
+			
+			if(num.charAt(i) == '9' && num.charAt(i+1) == '-' && num.charAt(i+2) =='1' && num.charAt(i+3) =='1') {
+				System.out.println("This number is invalid.");
+				in.nextLine();;
+			}
+			
+			if(num.charAt(i) == '9' && num.charAt(i+1) == '1' && num.charAt(i+2) =='-' && num.charAt(i+3) =='1') {
+				System.out.println("This number is invalid.");
+				in.nextLine();
+			}
+			
+			else {
+				b = true;
+				break;
+			}
+		}
+		
+		if(true){
+			System.out.println("Number is valid");
+		}
+	}
+}
